@@ -2,12 +2,12 @@ import React from "react";
 
 export default function AddressBalances({ balances }) {
   return (
-    <div className="bg-white shadow rounded-lg p-4">
-      <table className="w-full border-collapse">
+    <div className="bg-white shadow rounded-lg p-4 mx-auto w-full max-w-2xl text-center">
+      <table className="w-full border-collapse text-center mx-auto">
         <thead>
           <tr className="border-b">
-            <th className="text-left p-2">Address</th>
-            <th className="text-left p-2">Balance</th>
+            <th className="p-2">Address</th>
+            <th className="p-2">Balance</th>
           </tr>
         </thead>
         <tbody>
@@ -22,4 +22,3 @@ export default function AddressBalances({ balances }) {
     </div>
   );
 }
-
