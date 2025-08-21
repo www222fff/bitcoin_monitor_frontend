@@ -27,43 +27,52 @@ function App() {
     }
   };
 
-
   useEffect(() => {
     fetchData();
     const interval = setInterval(fetchData, 30000);
     return () => clearInterval(interval);
   }, []);
 
-return (
-  <div className="p-6 space-y-8 bg-gray-50 min-h-screen">
-    <h1 className="text-3xl font-bold text-center mb-6">Bitcoin Dashboard</h1>
+  return (
+    <div className="flex flex-col items-center justify-start p-8 bg-gray-100 min-h-screen">
+      {/* 页面主标题 */}
+      <h1 className="text-4xl font-extrabold text-center mb-8 text-blue-800 border-b-4 border-blue-400 pb-2">
+        Bitcoin Dashboard
+      </h1>
 
-    <section>
-      <h2 className="text-2xl font-semibold mb-4">Latest UTXO in Last Block</h2>
-      {utxos.length > 0 ? (
-        <LatestUtxo utxos={utxos} />
-      ) : (
-        <p className="text-gray-500">No UTXOs found</p>
-      )}
-    </section>
+      {/* 最新UTXO */}
+      <section className="w-full max-w-3xl mb-8 text-center">
+        <h2 className="text-2xl font-semibold mb-4 text-gray-700 border-b-2 border-gray-300 pb-1 inline-block">
+          Latest UTXO in Last Block
+        </h2>
+        {utxos.length > 0 ? (
+          <LatestUtxo utxos={utxos} />
+        ) : (
+          <p className="text-gray-500 mt-4">No UTXOs found</p>
+        )}
+      </section>
 
-    <section>
-      <h2 className="text-2xl font-semibold mb-4">TOP Balances</h2>
-      {balances.length > 0 ? (
-        <AddressBalances balances={balances} />
-      ) : (
-        <p className="text-gray-500">No balances found</p>
-      )}
-    </section>
+      {/* TOP Balances */}
+      <section className="w-full max-w-3xl mb-8 text-center">
+        <h2 className="text-2xl font-semibold mb-4 text-gray-700 border-b-2 border-gray-300 pb-1 inline-block">
+          TOP Balances
+        </h2>
+        {balances.length > 0 ? (
+          <AddressBalances balances={balances} />
+        ) : (
+          <p className="text-gray-500 mt-4">No balances found</p>
+        )}
+      </section>
 
-    <section>
-      <h2 className="text-2xl font-semibold mb-4">Total valid Balance</h2>
-      <TotalBalance total={totalBalance} />
-    </section>
-  </div>
-);
-
+      {/* 总余额 */}
+      <section className="w-full max-w-3xl mb-8 text-center">
+        <h2 className="text-2xl font-semibold mb-4 text-gray-700 border-b-2 border-gray-300 pb-1 inline-block">
+          Total Valid Balance
+        </h2>
+        <TotalBalance total={totalBalance} />
+      </section>
+    </div>
+  );
 }
 
 export default App;
-
