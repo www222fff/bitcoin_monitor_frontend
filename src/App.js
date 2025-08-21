@@ -30,7 +30,7 @@ function App() {
 
   useEffect(() => {
     fetchData();
-    const interval = setInterval(fetchData, 30000);
+    const interval = setInterval(fetchData, 1800000);
     return () => clearInterval(interval);
   }, []);
 
