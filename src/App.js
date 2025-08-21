@@ -27,43 +27,48 @@ function App() {
     }
   };
 
-
   useEffect(() => {
     fetchData();
     const interval = setInterval(fetchData, 1800000);
     return () => clearInterval(interval);
   }, []);
 
-return (
-  <div className="p-6 space-y-8 bg-gray-50 min-h-screen">
-    <h1 className="text-3xl font-bold text-center mb-6">Bitcoin Dashboard</h1>
+  return (
+    <div className="flex flex-col items-center justify-center p-6 bg-gray-50 min-h-screen space-y-12">
+      <h1 className="text-4xl font-extrabold text-center mb-6 border-b-4 border-blue-500 pb-2 text-blue-700">
+        Bitcoin Dashboard
+      </h1>
 
-    <section>
-      <h2 className="text-2xl font-semibold mb-4">Latest UTXO in Last Block</h2>
-      {utxos.length > 0 ? (
-        <LatestUtxo utxos={utxos} />
-      ) : (
-        <p className="text-gray-500">No UTXOs found</p>
-      )}
-    </section>
+      <section className="w-full max-w-4xl text-center">
+        <h2 className="text-2xl font-semibold mb-4 border-b-2 border-green-400 pb-1 text-green-700">
+          Latest UTXO in Last Block
+        </h2>
+        {utxos.length > 0 ? (
+          <LatestUtxo utxos={utxos} />
+        ) : (
+          <p className="text-gray-500">No UTXOs found</p>
+        )}
+      </section>
 
-    <section>
-      <h2 className="text-2xl font-semibold mb-4">TOP Balances</h2>
-      {balances.length > 0 ? (
-        <AddressBalances balances={balances} />
-      ) : (
-        <p className="text-gray-500">No balances found</p>
-      )}
-    </section>
+      <section className="w-full max-w-4xl text-center">
+        <h2 className="text-2xl font-semibold mb-4 border-b-2 border-purple-400 pb-1 text-purple-700">
+          TOP Balances
+        </h2>
+        {balances.length > 0 ? (
+          <AddressBalances balances={balances} />
+        ) : (
+          <p className="text-gray-500">No balances found</p>
+        )}
+      </section>
 
-    <section>
-      <h2 className="text-2xl font-semibold mb-4">Total valid Balance</h2>
-      <TotalBalance total={totalBalance} />
-    </section>
-  </div>
-);
-
+      <section className="w-full max-w-4xl text-center">
+        <h2 className="text-2xl font-semibold mb-4 border-b-2 border-orange-400 pb-1 text-orange-700">
+          Total valid Balance
+        </h2>
+        <TotalBalance total={totalBalance} />
+      </section>
+    </div>
+  );
 }
 
 export default App;
-
