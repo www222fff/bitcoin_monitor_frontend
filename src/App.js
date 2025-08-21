@@ -18,13 +18,15 @@ function App() {
         axios.get(`${API_BASE}/api/top-balances`),
         axios.get(`${API_BASE}/api/total-balances`)
       ]);
-      setUtxos(utxoRes.data || []);
-      setBalances(balanceRes.data || []);
-      setTotalBalance(totalRes.data.total || 0);
+
+      setUtxos(utxoRes.data.result || []);
+      setBalances(balanceRes.data.result || []);
+      setTotalBalance(totalRes.data || "0");
     } catch (err) {
       console.error("Error fetching data:", err);
     }
   };
+
 
   useEffect(() => {
     fetchData();
@@ -32,26 +34,35 @@ function App() {
     return () => clearInterval(interval);
   }, []);
 
-  return (
-    <div className="p-6 space-y-8 bg-gray-50 min-h-screen">
-      <h1 className="text-3xl font-bold text-center mb-6">Bitcoin Dashboard</h1>
+return (
+  <div className="p-6 space-y-8 bg-gray-50 min-h-screen">
+    <h1 className="text-3xl font-bold text-center mb-6">Bitcoin Dashboard</h1>
 
-      <section>
-        <h2 className="text-2xl font-semibold mb-4">Latest UTXO in Last Block</h2>
+    <section>
+      <h2 className="text-2xl font-semibold mb-4">Latest UTXO in Last Block</h2>
+      {utxos.length > 0 ? (
         <LatestUtxo utxos={utxos} />
-      </section>
+      ) : (
+        <p className="text-gray-500">No UTXOs found</p>
+      )}
+    </section>
 
-      <section>
-        <h2 className="text-2xl font-semibold mb-4">TOP Balances</h2>
+    <section>
+      <h2 className="text-2xl font-semibold mb-4">TOP Balances</h2>
+      {balances.length > 0 ? (
         <AddressBalances balances={balances} />
-      </section>
+      ) : (
+        <p className="text-gray-500">No balances found</p>
+      )}
+    </section>
 
-      <section>
-        <h2 className="text-2xl font-semibold mb-4">Total valid Balance</h2>
-        <TotalBalance total={totalBalance} />
-      </section>
-    </div>
-  );
+    <section>
+      <h2 className="text-2xl font-semibold mb-4">Total valid Balance</h2>
+      <TotalBalance total={totalBalance} />
+    </section>
+  </div>
+);
+
 }
 
 export default App;
