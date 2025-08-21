@@ -41,7 +41,7 @@ function App() {
 
     <section className="w-full max-w-4xl text-center">
       <h2 className="text-2xl font-semibold mb-4 border-b-2 border-gray-300 pb-2">
-        Latest UTXO in Last Block
+        Latest UTXO
       </h2>
       {utxos.length > 0 ? (
         <LatestUtxo utxos={utxos} />
@@ -63,7 +63,7 @@ function App() {
 
     <section className="w-full max-w-4xl text-center">
       <h2 className="text-2xl font-semibold mb-4 border-b-2 border-gray-300 pb-2">
-        Total valid Balance
+        Total Valid Address
       </h2>
       <TotalBalance total={totalBalance} />
     </section>
