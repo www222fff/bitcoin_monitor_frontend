@@ -8,3 +8,5 @@ export default function TotalBalance({ total }) {
     </div>
   );
 }
+
+

@@ -21,7 +21,7 @@ function App() {
 
       setUtxos(utxoRes.data.result || []);
       setBalances(balanceRes.data.result || []);
-      setTotalBalance(totalRes.data || "0");
+      setTotalBalance(totalRes.data.result || "0");
     } catch (err) {
       console.error("Error fetching data:", err);
     }
