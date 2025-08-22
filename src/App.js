@@ -55,7 +55,7 @@ function App() {
         </div>
 
         <div className="flex flex-col items-center justify-center space-y-8 max-w-4xl mx-auto">
-          <section className="bg-white/10 backdrop-blur-md rounded-xl p-6 shadow-2xl border border-white/20">
+          <section className="w-full max-w-4xl bg-white/10 backdrop-blur-md rounded-xl p-6 shadow-2xl border border-white/20">
             <h2 className="text-2xl font-bold mb-6 text-center text-white flex items-center justify-center">
               <span className="mr-2">⚡</span> Latest UTXO
             </h2>
@@ -68,7 +68,7 @@ function App() {
             )}
           </section>
 
-          <section className="bg-white/10 backdrop-blur-md rounded-xl p-6 shadow-2xl border border-white/20">
+          <section className="w-full max-w-4xl bg-white/10 backdrop-blur-md rounded-xl p-6 shadow-2xl border border-white/20">
             <h2 className="text-2xl font-bold mb-6 text-center text-white flex items-center justify-center">
               <span className="mr-2">🏆</span> TOP Balances
             </h2>
@@ -81,7 +81,7 @@ function App() {
             )}
           </section>
 
-          <section className="bg-white/10 backdrop-blur-md rounded-xl p-6 shadow-2xl border border-white/20">
+          <section className="w-full max-w-4xl bg-white/10 backdrop-blur-md rounded-xl p-6 shadow-2xl border border-white/20">
             <h2 className="text-2xl font-bold mb-6 text-center text-white flex items-center justify-center">
               <span className="mr-2">📊</span> Total Valid Address
             </h2>
