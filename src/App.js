@@ -3,6 +3,7 @@ import axios from "axios";
 import LatestUtxo from "./components/LatestUtxo";
 import AddressBalances from "./components/AddressBalances";
 import TotalBalance from "./components/TotalBalance";
+import "./App.css";
 
 function App() {
   const [utxos, setUtxos] = useState([]);
@@ -38,52 +39,52 @@ function App() {
   }, []);
 
   const LoadingSpinner = () => (
-    <div className="flex items-center justify-center">
-      <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-white"></div>
-      <span className="ml-2 text-white">Loading...</span>
+    <div className="loading-spinner">
+      <div className="spinner"></div>
+      <span>Loading...</span>
     </div>
   );
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-purple-600 via-blue-600 to-indigo-800 flex items-center justify-center p-6">
-      <div className="w-full max-w-6xl">
-        <div className="text-center mb-12">
-          <h1 className="text-5xl font-extrabold text-white mb-4 drop-shadow-lg">
+    <div className="dashboard-container">
+      <div className="dashboard-content">
+        <div className="dashboard-header">
+          <h1 className="dashboard-title">
             🪙 Bitcoin Dashboard
           </h1>
-          <div className="w-32 h-1 bg-gradient-to-r from-yellow-400 to-orange-500 mx-auto rounded-full"></div>
+          <div className="title-divider"></div>
         </div>
 
-        <div className="flex flex-col items-center justify-center space-y-8 max-w-4xl mx-auto">
-          <section className="w-full max-w-4xl bg-white/10 backdrop-blur-md rounded-xl p-6 shadow-2xl border border-white/20">
-            <h2 className="text-2xl font-bold mb-6 text-center text-white flex items-center justify-center">
-              <span className="mr-2">⚡</span> Latest UTXO
+        <div className="sections-container">
+          <section className="dashboard-section">
+            <h2 className="section-header">
+              <span>⚡</span> Latest UTXO
             </h2>
             {isLoading ? (
               <LoadingSpinner />
             ) : utxos.length > 0 ? (
               <LatestUtxo utxos={utxos} />
             ) : (
-              <p className="text-white/70 text-center">No UTXOs found</p>
+              <p className="no-data">No UTXOs found</p>
             )}
           </section>
 
-          <section className="w-full max-w-4xl bg-white/10 backdrop-blur-md rounded-xl p-6 shadow-2xl border border-white/20">
-            <h2 className="text-2xl font-bold mb-6 text-center text-white flex items-center justify-center">
-              <span className="mr-2">🏆</span> TOP Balances
+          <section className="dashboard-section">
+            <h2 className="section-header">
+              <span>🏆</span> TOP Balances
             </h2>
             {isLoading ? (
               <LoadingSpinner />
             ) : balances.length > 0 ? (
               <AddressBalances balances={balances} />
             ) : (
-              <p className="text-white/70 text-center">No balances found</p>
+              <p className="no-data">No balances found</p>
             )}
           </section>
 
-          <section className="w-full max-w-4xl bg-white/10 backdrop-blur-md rounded-xl p-6 shadow-2xl border border-white/20">
-            <h2 className="text-2xl font-bold mb-6 text-center text-white flex items-center justify-center">
-              <span className="mr-2">📊</span> Total Valid Address
+          <section className="dashboard-section">
+            <h2 className="section-header">
+              <span>📊</span> Total Valid Address
             </h2>
             {isLoading ? (
               <LoadingSpinner />
