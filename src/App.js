@@ -45,8 +45,8 @@ function App() {
   );
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-purple-600 via-blue-600 to-indigo-800 p-6">
-      <div className="container mx-auto max-w-6xl">
+    <div className="min-h-screen bg-gradient-to-br from-purple-600 via-blue-600 to-indigo-800 flex items-center justify-center p-6">
+      <div className="w-full max-w-6xl">
         <div className="text-center mb-12">
           <h1 className="text-5xl font-extrabold text-white mb-4 drop-shadow-lg">
             🪙 Bitcoin Dashboard
