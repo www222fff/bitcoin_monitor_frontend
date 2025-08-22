@@ -3,15 +3,18 @@ import axios from "axios";
 import LatestUtxo from "./components/LatestUtxo";
 import AddressBalances from "./components/AddressBalances";
 import TotalBalance from "./components/TotalBalance";
+import "./App.css";
 
 function App() {
   const [utxos, setUtxos] = useState([]);
   const [balances, setBalances] = useState([]);
   const [totalBalance, setTotalBalance] = useState(0);
+  const [isLoading, setIsLoading] = useState(true);
 
   const API_BASE = process.env.REACT_APP_API_URL;
 
   const fetchData = async () => {
+    setIsLoading(true);
     try {
       const [utxoRes, balanceRes, totalRes] = await Promise.all([
         axios.get(`${API_BASE}/api/latest-utxo`),
@@ -24,6 +27,8 @@ function App() {
       setTotalBalance(totalRes.data.result || "0");
     } catch (err) {
       console.error("Error fetching data:", err);
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -33,42 +38,64 @@ function App() {
     return () => clearInterval(interval);
   }, []);
 
- return (
-  <div className="flex flex-col items-center justify-center min-h-screen bg-gray-50 p-6 space-y-12">
-    <h1 className="text-4xl font-extrabold text-center border-b-4 border-blue-500 pb-2 text-blue-700">
-      Bitcoin Dashboard
-    </h1>
+  const LoadingSpinner = () => (
+    <div className="loading-spinner">
+      <div className="spinner"></div>
+      <span>Loading...</span>
+    </div>
+  );
 
-    <section className="w-full max-w-4xl text-center">
-      <h2 className="text-2xl font-semibold mb-4 border-b-2 border-gray-300 pb-2">
-        Latest UTXO
-      </h2>
-      {utxos.length > 0 ? (
-        <LatestUtxo utxos={utxos} />
-      ) : (
-        <p className="text-gray-500">No UTXOs found</p>
-      )}
-    </section>
+  return (
+    <div className="dashboard-container">
+      <div className="dashboard-content">
+        <div className="dashboard-header">
+          <h1 className="dashboard-title">
+            🪙 Bitcoin Dashboard
+          </h1>
+          <div className="title-divider"></div>
+        </div>
 
-    <section className="w-full max-w-4xl text-center">
-      <h2 className="text-2xl font-semibold mb-4 border-b-2 border-gray-300 pb-2">
-        TOP Balances
-      </h2>
-      {balances.length > 0 ? (
-        <AddressBalances balances={balances} />
-      ) : (
-        <p className="text-gray-500">No balances found</p>
-      )}
-    </section>
+        <div className="sections-container">
+          <section className="dashboard-section">
+            <h2 className="section-header">
+              <span>⚡</span> Latest UTXO
+            </h2>
+            {isLoading ? (
+              <LoadingSpinner />
+            ) : utxos.length > 0 ? (
+              <LatestUtxo utxos={utxos} />
+            ) : (
+              <p className="no-data">No UTXOs found</p>
+            )}
+          </section>
 
-    <section className="w-full max-w-4xl text-center">
-      <h2 className="text-2xl font-semibold mb-4 border-b-2 border-gray-300 pb-2">
-        Total Valid Address
-      </h2>
-      <TotalBalance total={totalBalance} />
-    </section>
-  </div>
-);
+          <section className="dashboard-section">
+            <h2 className="section-header">
+              <span>🏆</span> TOP Balances
+            </h2>
+            {isLoading ? (
+              <LoadingSpinner />
+            ) : balances.length > 0 ? (
+              <AddressBalances balances={balances} />
+            ) : (
+              <p className="no-data">No balances found</p>
+            )}
+          </section>
+
+          <section className="dashboard-section">
+            <h2 className="section-header">
+              <span>📊</span> Total Valid Address
+            </h2>
+            {isLoading ? (
+              <LoadingSpinner />
+            ) : (
+              <TotalBalance total={totalBalance} />
+            )}
+          </section>
+        </div>
+      </div>
+    </div>
+  );
 
 }
 

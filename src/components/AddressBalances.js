@@ -1,20 +1,25 @@
 import React from "react";
 
 export default function AddressBalances({ balances }) {
+  const extractAddress = (fullAddress) => {
+    const parts = fullAddress.split('_');
+    return parts.length > 1 ? parts[1] : fullAddress;
+  };
+
   return (
-    <div className="bg-white shadow rounded-lg p-4 mx-auto w-full max-w-2xl text-center">
-      <table className="w-full border-collapse text-center mx-auto">
-        <thead>
-          <tr className="border-b">
-            <th className="p-2">Address</th>
-            <th className="p-2">Balance</th>
+    <div className="data-table">
+      <table className="table">
+        <thead className="table-header orange">
+          <tr>
+            <th>Address</th>
+            <th>Balance</th>
           </tr>
         </thead>
         <tbody>
           {balances.map((b, idx) => (
-            <tr key={idx} className="border-b hover:bg-gray-100">
-              <td className="p-2">{b.address}</td>
-              <td className="p-2">{b.balance}</td>
+            <tr key={idx} className="table-row orange">
+              <td className="table-cell mono">{extractAddress(b.address)}</td>
+              <td className="table-cell highlight orange">{b.balance}</td>
             </tr>
           ))}
         </tbody>
