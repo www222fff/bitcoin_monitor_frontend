@@ -2,7 +2,7 @@
 
 .dashboard-container {
   min-height: 100vh;
-  background: linear-gradient(135deg, #8b5cf6 0%, #3b82f6 50%, #4338ca 100%);
+  background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 50%, #cbd5e1 100%);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -23,15 +23,15 @@
 .dashboard-title {
   font-size: 3rem;
   font-weight: 800;
-  color: white;
+  color: #1e293b;
   margin-bottom: 16px;
-  text-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .title-divider {
   width: 128px;
   height: 4px;
-  background: linear-gradient(to right, #fbbf24, #f97316);
+  background: linear-gradient(to right, #64748b, #475569);
   margin: 0 auto;
   border-radius: 2px;
 }
@@ -46,12 +46,12 @@
 .dashboard-section {
   width: 100%;
   max-width: 800px;
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.9);
   backdrop-filter: blur(12px);
   border-radius: 16px;
   padding: 24px;
-  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(203, 213, 225, 0.5);
 }
 
 .section-header {
@@ -59,7 +59,7 @@
   font-weight: 700;
   margin-bottom: 24px;
   text-align: center;
-  color: white;
+  color: #334155;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -71,14 +71,14 @@
   align-items: center;
   justify-content: center;
   gap: 8px;
-  color: white;
+  color: #64748b;
 }
 
 .spinner {
   width: 32px;
   height: 32px;
   border: 2px solid transparent;
-  border-bottom: 2px solid white;
+  border-bottom: 2px solid #64748b;
   border-radius: 50%;
   animation: spin 1s linear infinite;
 }
@@ -104,7 +104,7 @@
 }
 
 .table-header {
-  background: linear-gradient(to right, #3b82f6, #4338ca);
+  background: linear-gradient(to right, #64748b, #475569);
   color: white;
   position: sticky;
   top: 0;
@@ -112,7 +112,7 @@
 }
 
 .table-header.orange {
-  background: linear-gradient(to right, #f97316, #dc2626);
+  background: linear-gradient(to right, #6b7280, #4b5563);
 }
 
 .table-header th {
@@ -127,11 +127,11 @@
 }
 
 .table-row:hover {
-  background-color: #dbeafe;
+  background-color: #f1f5f9;
 }
 
 .table-row.orange:hover {
-  background-color: #fed7aa;
+  background-color: #f8fafc;
 }
 
 .table-cell {
@@ -148,11 +148,11 @@
 
 .table-cell.highlight {
   font-weight: 600;
-  color: #4338ca;
+  color: #475569;
 }
 
 .table-cell.highlight.orange {
-  color: #ea580c;
+  color: #64748b;
 }
 
 .total-balance-card {
@@ -182,7 +182,7 @@
 
 .no-data {
   text-align: center;
-  color: rgba(255, 255, 255, 0.7);
+  color: #64748b;
 }
 
 /* 响应式设计 */
