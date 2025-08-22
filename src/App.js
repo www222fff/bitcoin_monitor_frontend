@@ -54,7 +54,7 @@ function App() {
           <div className="w-32 h-1 bg-gradient-to-r from-yellow-400 to-orange-500 mx-auto rounded-full"></div>
         </div>
 
-        <div className="grid gap-8 md:grid-cols-1 lg:grid-cols-3 items-start">
+        <div className="flex flex-col items-center justify-center space-y-8 max-w-4xl mx-auto">
           <section className="bg-white/10 backdrop-blur-md rounded-xl p-6 shadow-2xl border border-white/20">
             <h2 className="text-2xl font-bold mb-6 text-center text-white flex items-center justify-center">
               <span className="mr-2">⚡</span> Latest UTXO
