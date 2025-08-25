@@ -9,7 +9,11 @@ function App() {
   const [utxos, setUtxos] = useState([]);
   const [balances, setBalances] = useState([]);
   const [totalBalance, setTotalBalance] = useState(0);
-  const [isLoading, setIsLoading] = useState(true);
+  const [loadingStates, setLoadingStates] = useState({
+    utxos: true,
+    balances: true,
+    total: true
+  });
   const [hasError, setHasError] = useState(false);
 
   const API_BASE = process.env.REACT_APP_API_URL;
