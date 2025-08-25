@@ -119,7 +119,7 @@ function App() {
               <h2 className="section-header">
                 <span>⚡</span> Latest UTXO
               </h2>
-              {isLoading ? (
+              {loadingStates.utxos ? (
                 <LoadingSpinner />
               ) : utxos.length > 0 ? (
                 <LatestUtxo utxos={utxos} />
@@ -132,7 +132,7 @@ function App() {
               <h2 className="section-header">
                 <span>🏆</span> TOP Balances
               </h2>
-              {isLoading ? (
+              {loadingStates.balances ? (
                 <LoadingSpinner />
               ) : balances.length > 0 ? (
                 <AddressBalances balances={balances} />
@@ -145,7 +145,7 @@ function App() {
               <h2 className="section-header">
                 <span>📊</span> Total Valid Address
               </h2>
-              {isLoading ? (
+              {loadingStates.total ? (
                 <LoadingSpinner />
               ) : (
                 <TotalBalance total={totalBalance} />
