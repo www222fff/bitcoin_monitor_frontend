@@ -3,6 +3,10 @@ import axios from "axios";
 import LatestUtxo from "./components/LatestUtxo";
 import AddressBalances from "./components/AddressBalances";
 import TotalBalance from "./components/TotalBalance";
+import { FaBitcoin, FaDiscord } from "react-icons/fa";
+import { FaXTwitter } from "react-icons/fa6";
+import { IoFlash } from "react-icons/io5";
+import { FaTrophy, FaChartBar } from "react-icons/fa";
 import "./App.css";
 
 function App() {
@@ -133,7 +137,7 @@ function App() {
       <div className="dashboard-content">
         <div className="dashboard-header">
           <h1 className="dashboard-title">
-            ₿ Dashboard
+            <FaBitcoin /> Dashboard
           </h1>
         </div>
 
@@ -143,7 +147,7 @@ function App() {
           <div className="sections-container">
             <section className="dashboard-section">
               <h2 className="section-header">
-                <span>⚡</span> Latest UTXO
+                <span><IoFlash /></span> Latest UTXO
               </h2>
               {loadingStates.utxos ? (
                 <LoadingSpinner />
@@ -156,7 +160,7 @@ function App() {
 
             <section className="dashboard-section">
               <h2 className="section-header">
-                <span>🏆</span> TOP Balances
+                <span><FaTrophy /></span> TOP Balances
               </h2>
               {loadingStates.balances ? (
                 <LoadingSpinner />
@@ -169,7 +173,7 @@ function App() {
 
             <section className="dashboard-section">
               <h2 className="section-header">
-                <span>📊</span> Total Valid Address
+                <span><FaChartBar /></span> Total Valid Address
               </h2>
               {loadingStates.total ? (
                 <LoadingSpinner />
@@ -182,7 +186,6 @@ function App() {
 
         <footer className="dashboard-footer">
           <div className="contact-info">
-            <h3 className="contact-title">联系我们</h3>
             <div className="contact-links">
               <a
                 href="#"
@@ -190,7 +193,7 @@ function App() {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <span className="contact-icon">🐦</span>
+                <span className="contact-icon"><FaXTwitter /></span>
                 Twitter
               </a>
               <a
@@ -199,7 +202,7 @@ function App() {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <span className="contact-icon">💬</span>
+                <span className="contact-icon"><FaDiscord /></span>
                 Discord
               </a>
             </div>
