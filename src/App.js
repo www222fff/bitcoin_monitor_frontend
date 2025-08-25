@@ -12,7 +12,7 @@ function App() {
   const [isLoading, setIsLoading] = useState(true);
   const [hasError, setHasError] = useState(false);
 
-  const API_BASE = "https://5af5361e7c4290d284ff5d55a1cd8a9599d8ea6b-4000.dstack-prod7.phala.network";
+  const API_BASE = process.env.REACT_APP_API_URL;
 
   const fetchData = async () => {
     setIsLoading(true);
