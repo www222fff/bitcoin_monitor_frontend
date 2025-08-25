@@ -3,6 +3,9 @@ import axios from "axios";
 import LatestUtxo from "./components/LatestUtxo";
 import AddressBalances from "./components/AddressBalances";
 import TotalBalance from "./components/TotalBalance";
+import { FaBitcoin, FaTwitter, FaDiscord } from "react-icons/fa";
+import { IoFlash } from "react-icons/io5";
+import { FaTrophy, FaChartBar } from "react-icons/fa";
 import "./App.css";
 
 function App() {
