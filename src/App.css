@@ -26,6 +26,16 @@
   color: #1e293b;
   margin-bottom: 16px;
   text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+}
+
+.dashboard-title svg {
+  transform: rotate(0deg);
+  vertical-align: baseline;
+  color: #f59e0b;
 }
 
 .title-divider {
