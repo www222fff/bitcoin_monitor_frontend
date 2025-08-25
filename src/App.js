@@ -70,10 +70,12 @@ function App() {
 
   const fetchUtxos = async () => {
     try {
-      const response = await axios.get(`${API_BASE}/api/latest-utxo`);
+      const response = await retryRequest(
+        () => axios.get(`${API_BASE}/api/latest-utxo`)
+      );
       setUtxos(response.data.result || []);
     } catch (err) {
-      console.error("Error fetching UTXOs:", err);
+      console.error("Error fetching UTXOs after all retries:", err);
     } finally {
       setLoadingStates(prev => ({ ...prev, utxos: false }));
     }
