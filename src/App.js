@@ -4,7 +4,7 @@ import LatestUtxo from "./components/LatestUtxo";
 import AddressBalances from "./components/AddressBalances";
 import TotalBalance from "./components/TotalBalance";
 import { FaBitcoin, FaDiscord } from "react-icons/fa";
-import { BsTwitter } from "react-icons/bs";
+import { FaXTwitter } from "react-icons/fa6";
 import { IoFlash } from "react-icons/io5";
 import { FaTrophy, FaChartBar } from "react-icons/fa";
 import "./App.css";
