@@ -194,7 +194,7 @@ function App() {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <span className="contact-icon"><FaTwitter /></span>
+                <span className="contact-icon"><BsTwitter /></span>
                 Twitter
               </a>
               <a
