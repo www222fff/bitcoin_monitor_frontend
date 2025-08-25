@@ -136,7 +136,7 @@ function App() {
       <div className="dashboard-content">
         <div className="dashboard-header">
           <h1 className="dashboard-title">
-            ₿ Dashboard
+            <FaBitcoin /> Dashboard
           </h1>
         </div>
 
@@ -146,7 +146,7 @@ function App() {
           <div className="sections-container">
             <section className="dashboard-section">
               <h2 className="section-header">
-                <span>⚡</span> Latest UTXO
+                <span><IoFlash /></span> Latest UTXO
               </h2>
               {loadingStates.utxos ? (
                 <LoadingSpinner />
@@ -159,7 +159,7 @@ function App() {
 
             <section className="dashboard-section">
               <h2 className="section-header">
-                <span>🏆</span> TOP Balances
+                <span><FaTrophy /></span> TOP Balances
               </h2>
               {loadingStates.balances ? (
                 <LoadingSpinner />
@@ -172,7 +172,7 @@ function App() {
 
             <section className="dashboard-section">
               <h2 className="section-header">
-                <span>📊</span> Total Valid Address
+                <span><FaChartBar /></span> Total Valid Address
               </h2>
               {loadingStates.total ? (
                 <LoadingSpinner />
@@ -193,7 +193,7 @@ function App() {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <span className="contact-icon">🐦</span>
+                <span className="contact-icon"><FaTwitter /></span>
                 Twitter
               </a>
               <a
@@ -202,7 +202,7 @@ function App() {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <span className="contact-icon">💬</span>
+                <span className="contact-icon"><FaDiscord /></span>
                 Discord
               </a>
             </div>
