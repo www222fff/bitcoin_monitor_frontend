@@ -19,33 +19,64 @@ function App() {
   const API_BASE = process.env.REACT_APP_API_URL;
 
   const fetchData = async () => {
-    setIsLoading(true);
+    setLoadingStates({
+      utxos: true,
+      balances: true,
+      total: true
+    });
     setHasError(false);
 
     if (!API_BASE) {
       console.error("REACT_APP_API_URL environment variable is not set");
       setHasError(true);
-      setIsLoading(false);
+      setLoadingStates({
+        utxos: false,
+        balances: false,
+        total: false
+      });
       return;
     }
 
-    try {
-      const [utxoRes, balanceRes, totalRes] = await Promise.all([
-        axios.get(`${API_BASE}/api/latest-utxo`),
-        axios.get(`${API_BASE}/api/top-balances`),
-        axios.get(`${API_BASE}/api/total-balances`)
-      ]);
+    // Fetch UTXO data
+    fetchUtxos();
 
-      setUtxos(utxoRes.data.result || []);
-      setBalances(balanceRes.data.result || []);
-      setTotalBalance(totalRes.data.result || "0");
+    // Fetch balance data
+    fetchBalances();
+
+    // Fetch total balance data
+    fetchTotalBalance();
+  };
+
+  const fetchUtxos = async () => {
+    try {
+      const response = await axios.get(`${API_BASE}/api/latest-utxo`);
+      setUtxos(response.data.result || []);
     } catch (err) {
-      console.error("Error fetching data:", err);
-      if (err.response?.status === 404) {
-        console.error(`API endpoints not found. Check if your backend server is running at ${API_BASE}`);
-      }
+      console.error("Error fetching UTXOs:", err);
     } finally {
-      setIsLoading(false);
+      setLoadingStates(prev => ({ ...prev, utxos: false }));
+    }
+  };
+
+  const fetchBalances = async () => {
+    try {
+      const response = await axios.get(`${API_BASE}/api/top-balances`);
+      setBalances(response.data.result || []);
+    } catch (err) {
+      console.error("Error fetching balances:", err);
+    } finally {
+      setLoadingStates(prev => ({ ...prev, balances: false }));
+    }
+  };
+
+  const fetchTotalBalance = async () => {
+    try {
+      const response = await axios.get(`${API_BASE}/api/total-balances`);
+      setTotalBalance(response.data.result || "0");
+    } catch (err) {
+      console.error("Error fetching total balance:", err);
+    } finally {
+      setLoadingStates(prev => ({ ...prev, total: false }));
     }
   };
 
