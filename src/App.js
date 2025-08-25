@@ -18,6 +18,27 @@ function App() {
 
   const API_BASE = process.env.REACT_APP_API_URL;
 
+  // Retry utility function
+  const retryRequest = async (requestFn, maxRetries = 3, delayMs = 5000) => {
+    let lastError;
+
+    for (let attempt = 1; attempt <= maxRetries + 1; attempt++) {
+      try {
+        return await requestFn();
+      } catch (error) {
+        lastError = error;
+        console.warn(`API request failed (attempt ${attempt}/${maxRetries + 1}):`, error.message);
+
+        if (attempt <= maxRetries) {
+          console.log(`Retrying in ${delayMs/1000} seconds...`);
+          await new Promise(resolve => setTimeout(resolve, delayMs));
+        }
+      }
+    }
+
+    throw lastError;
+  };
+
   const fetchData = async () => {
     setLoadingStates({
       utxos: true,
