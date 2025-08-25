@@ -16,7 +16,7 @@ export default function LatestUtxo({ utxos }) {
           </tr>
         </thead>
         <tbody>
-          {utxos.slice(0, 20).map((u, idx) => (
+          {utxos.map((u, idx) => (
             <tr key={idx} className="table-row">
               <td className="table-cell mono">{extractAddress(u.address)}</td>
               <td className="table-cell highlight">{u.utxo}</td>

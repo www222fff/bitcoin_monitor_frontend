@@ -133,9 +133,8 @@ function App() {
       <div className="dashboard-content">
         <div className="dashboard-header">
           <h1 className="dashboard-title">
-            🪙 ABC Dashboard
+            ₿ Dashboard
           </h1>
-          <div className="title-divider"></div>
         </div>
 
         {hasError ? (
@@ -180,6 +179,32 @@ function App() {
             </section>
           </div>
         )}
+
+        <footer className="dashboard-footer">
+          <div className="contact-info">
+            <h3 className="contact-title">联系我们</h3>
+            <div className="contact-links">
+              <a
+                href="#"
+                className="contact-link twitter-link"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <span className="contact-icon">🐦</span>
+                Twitter
+              </a>
+              <a
+                href="#"
+                className="contact-link discord-link"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <span className="contact-icon">💬</span>
+                Discord
+              </a>
+            </div>
+          </div>
+        </footer>
       </div>
     </div>
   );
