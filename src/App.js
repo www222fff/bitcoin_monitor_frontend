@@ -15,6 +15,13 @@ function App() {
 
   const fetchData = async () => {
     setIsLoading(true);
+
+    if (!API_BASE) {
+      console.error("REACT_APP_API_URL environment variable is not set");
+      setIsLoading(false);
+      return;
+    }
+
     try {
       const [utxoRes, balanceRes, totalRes] = await Promise.all([
         axios.get(`${API_BASE}/api/latest-utxo`),
@@ -27,6 +34,9 @@ function App() {
       setTotalBalance(totalRes.data.result || "0");
     } catch (err) {
       console.error("Error fetching data:", err);
+      if (err.response?.status === 404) {
+        console.error(`API endpoints not found. Check if your backend server is running at ${API_BASE}`);
+      }
     } finally {
       setIsLoading(false);
     }
