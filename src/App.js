@@ -76,44 +76,48 @@ function App() {
           <div className="title-divider"></div>
         </div>
 
-        <div className="sections-container">
-          <section className="dashboard-section">
-            <h2 className="section-header">
-              <span>⚡</span> Latest UTXO
-            </h2>
-            {isLoading ? (
-              <LoadingSpinner />
-            ) : utxos.length > 0 ? (
-              <LatestUtxo utxos={utxos} />
-            ) : (
-              <p className="no-data">No UTXOs found</p>
-            )}
-          </section>
+        {hasError ? (
+          <ErrorMessage />
+        ) : (
+          <div className="sections-container">
+            <section className="dashboard-section">
+              <h2 className="section-header">
+                <span>⚡</span> Latest UTXO
+              </h2>
+              {isLoading ? (
+                <LoadingSpinner />
+              ) : utxos.length > 0 ? (
+                <LatestUtxo utxos={utxos} />
+              ) : (
+                <p className="no-data">No UTXOs found</p>
+              )}
+            </section>
 
-          <section className="dashboard-section">
-            <h2 className="section-header">
-              <span>🏆</span> TOP Balances
-            </h2>
-            {isLoading ? (
-              <LoadingSpinner />
-            ) : balances.length > 0 ? (
-              <AddressBalances balances={balances} />
-            ) : (
-              <p className="no-data">No balances found</p>
-            )}
-          </section>
+            <section className="dashboard-section">
+              <h2 className="section-header">
+                <span>🏆</span> TOP Balances
+              </h2>
+              {isLoading ? (
+                <LoadingSpinner />
+              ) : balances.length > 0 ? (
+                <AddressBalances balances={balances} />
+              ) : (
+                <p className="no-data">No balances found</p>
+              )}
+            </section>
 
-          <section className="dashboard-section">
-            <h2 className="section-header">
-              <span>📊</span> Total Valid Address
-            </h2>
-            {isLoading ? (
-              <LoadingSpinner />
-            ) : (
-              <TotalBalance total={totalBalance} />
-            )}
-          </section>
-        </div>
+            <section className="dashboard-section">
+              <h2 className="section-header">
+                <span>📊</span> Total Valid Address
+              </h2>
+              {isLoading ? (
+                <LoadingSpinner />
+              ) : (
+                <TotalBalance total={totalBalance} />
+              )}
+            </section>
+          </div>
+        )}
       </div>
     </div>
   );
