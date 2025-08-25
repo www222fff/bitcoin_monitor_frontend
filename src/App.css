@@ -238,26 +238,7 @@
     font-size: 0.75rem;
   }
 
-  .pagination-container {
-    flex-direction: column;
-    gap: 12px;
-    padding: 12px;
-  }
-
-  .pagination-controls {
-    gap: 4px;
-    flex-wrap: wrap;
-    justify-content: center;
-  }
-
-  .pagination-btn {
-    padding: 6px 8px;
-    font-size: 0.75rem;
-    min-width: 32px;
-  }
-
-  .pagination-info {
-    text-align: center;
-    font-size: 0.75rem;
+  .data-table {
+    max-height: 400px;
   }
 }
