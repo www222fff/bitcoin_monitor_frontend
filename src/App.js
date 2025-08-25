@@ -50,7 +50,7 @@ function App() {
       <div className="dashboard-content">
         <div className="dashboard-header">
           <h1 className="dashboard-title">
-            🪙 Bitcoin Dashboard
+            🪙 ABC Dashboard
           </h1>
           <div className="title-divider"></div>
         </div>
@@ -79,7 +79,7 @@ function App() {
               <AddressBalances balances={balances} />
             ) : (
               <p className="no-data">No balances found</p>
-            )}
+            }
           </section>
 
           <section className="dashboard-section">
