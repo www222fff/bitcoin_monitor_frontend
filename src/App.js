@@ -133,7 +133,7 @@ function App() {
       <div className="dashboard-content">
         <div className="dashboard-header">
           <h1 className="dashboard-title">
-            🅱️ Dashboard
+            $ Dashboard
           </h1>
         </div>
 
@@ -182,7 +182,7 @@ function App() {
 
         <footer className="dashboard-footer">
           <div className="contact-info">
-            <h3 className="contact-title">联系我们</h3>
+            <h3 className="contact-title">���系我们</h3>
             <div className="contact-links">
               <a
                 href="#"
