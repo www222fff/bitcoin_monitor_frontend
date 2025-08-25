@@ -83,10 +83,12 @@ function App() {
 
   const fetchBalances = async () => {
     try {
-      const response = await axios.get(`${API_BASE}/api/top-balances`);
+      const response = await retryRequest(
+        () => axios.get(`${API_BASE}/api/top-balances`)
+      );
       setBalances(response.data.result || []);
     } catch (err) {
-      console.error("Error fetching balances:", err);
+      console.error("Error fetching balances after all retries:", err);
     } finally {
       setLoadingStates(prev => ({ ...prev, balances: false }));
     }
