@@ -58,6 +58,14 @@ function App() {
     </div>
   );
 
+  const ErrorMessage = () => (
+    <div className="error-message">
+      <h3>⚠️ Configuration Error</h3>
+      <p>API URL is not configured. Please set the REACT_APP_API_URL environment variable.</p>
+      <p>Current API_BASE: {API_BASE || 'undefined'}</p>
+    </div>
+  );
+
   return (
     <div className="dashboard-container">
       <div className="dashboard-content">
