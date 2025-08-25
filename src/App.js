@@ -186,7 +186,6 @@ function App() {
 
         <footer className="dashboard-footer">
           <div className="contact-info">
-            <h3 className="contact-title">Contact</h3>
             <div className="contact-links">
               <a
                 href="#"
