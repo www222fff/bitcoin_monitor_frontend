@@ -185,6 +185,66 @@
   color: #64748b;
 }
 
+.dashboard-footer {
+  margin-top: 48px;
+  padding: 32px 0;
+  border-top: 1px solid rgba(203, 213, 225, 0.3);
+}
+
+.contact-info {
+  text-align: center;
+}
+
+.contact-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #374151;
+  margin-bottom: 16px;
+}
+
+.contact-links {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+.contact-link {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 20px;
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(8px);
+  border-radius: 12px;
+  text-decoration: none;
+  color: #374151;
+  font-weight: 500;
+  font-size: 0.875rem;
+  transition: all 0.2s;
+  border: 1px solid rgba(203, 213, 225, 0.3);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.contact-link:hover {
+  background: rgba(255, 255, 255, 0.95);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  border-color: rgba(156, 163, 175, 0.5);
+}
+
+.contact-icon {
+  font-size: 1.125rem;
+}
+
+.twitter-link:hover {
+  color: #1d9bf0;
+}
+
+.discord-link:hover {
+  color: #5865f2;
+}
+
 .error-message {
   background: rgba(239, 68, 68, 0.1);
   border: 2px solid #ef4444;
@@ -240,5 +300,23 @@
 
   .data-table {
     max-height: 400px;
+  }
+
+  .dashboard-footer {
+    margin-top: 32px;
+    padding: 24px 0;
+  }
+
+  .contact-title {
+    font-size: 1.125rem;
+  }
+
+  .contact-links {
+    gap: 16px;
+  }
+
+  .contact-link {
+    padding: 10px 16px;
+    font-size: 0.8rem;
   }
 }
