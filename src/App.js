@@ -16,9 +16,11 @@ function App() {
 
   const fetchData = async () => {
     setIsLoading(true);
+    setHasError(false);
 
     if (!API_BASE) {
       console.error("REACT_APP_API_URL environment variable is not set");
+      setHasError(true);
       setIsLoading(false);
       return;
     }
