@@ -186,7 +186,7 @@ function App() {
 
         <footer className="dashboard-footer">
           <div className="contact-info">
-            <h3 className="contact-title">联系我们</h3>
+            <h3 className="contact-title">��系我们</h3>
             <div className="contact-links">
               <a
                 href="#"
@@ -194,7 +194,7 @@ function App() {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <span className="contact-icon"><BsTwitter /></span>
+                <span className="contact-icon"><FaXTwitter /></span>
                 Twitter
               </a>
               <a
