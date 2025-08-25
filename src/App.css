@@ -293,17 +293,40 @@
   .dashboard-title {
     font-size: 2rem;
   }
-  
+
   .dashboard-container {
     padding: 16px;
   }
-  
+
   .dashboard-section {
     padding: 16px;
   }
-  
+
   .table-cell {
     padding: 8px;
+    font-size: 0.75rem;
+  }
+
+  .pagination-container {
+    flex-direction: column;
+    gap: 12px;
+    padding: 12px;
+  }
+
+  .pagination-controls {
+    gap: 4px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .pagination-btn {
+    padding: 6px 8px;
+    font-size: 0.75rem;
+    min-width: 32px;
+  }
+
+  .pagination-info {
+    text-align: center;
     font-size: 0.75rem;
   }
 }
