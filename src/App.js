@@ -187,7 +187,7 @@ function App() {
             <section className="dashboard-section">
               <h2 className="section-header">
                 <span><IoFlash /></span> Latest UTXO
-                {blockHeight && <span className="block-height">({blockHeight})</span>}
+                {blockHeight && <span className="block-height">(blockHeight={blockHeight})</span>}
               </h2>
               {loadingStates.utxos ? (
                 <LoadingSpinner />
