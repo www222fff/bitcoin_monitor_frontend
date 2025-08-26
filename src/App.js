@@ -11,6 +11,7 @@ import "./App.css";
 
 function App() {
   const [utxos, setUtxos] = useState([]);
+  const [blockHeight, setBlockHeight] = useState(null);
   const [balances, setBalances] = useState([]);
   const [totalBalance, setTotalBalance] = useState(0);
   const [loadingStates, setLoadingStates] = useState({
@@ -77,7 +78,30 @@ function App() {
       const response = await retryRequest(
         () => axios.get(`${API_BASE}/api/latest-utxo`)
       );
-      setUtxos(response.data.result || []);
+      const result = response.data.result || [];
+
+      // Extract blockHeight from first item if present
+      let processedUtxos = [];
+      let extractedBlockHeight = null;
+
+      if (result.length > 0) {
+        const firstItem = result[0];
+        if (firstItem.blockHeight !== undefined) {
+          extractedBlockHeight = firstItem.blockHeight;
+          // Process remaining items as address-value pairs
+          processedUtxos = result.slice(1).map(item => {
+            const address = Object.keys(item)[0];
+            const utxo = item[address];
+            return { address, utxo };
+          });
+        } else {
+          // Fallback to old structure if no blockHeight
+          processedUtxos = result;
+        }
+      }
+
+      setUtxos(processedUtxos);
+      setBlockHeight(extractedBlockHeight);
     } catch (err) {
       console.error("Error fetching UTXOs after all retries:", err);
     } finally {
@@ -90,7 +114,22 @@ function App() {
       const response = await retryRequest(
         () => axios.get(`${API_BASE}/api/top-balances`)
       );
-      setBalances(response.data.result || []);
+      const result = response.data.result || [];
+
+      // Process new structure: convert object key-value pairs to array
+      const processedBalances = result.map(item => {
+        if (item.address && item.balance !== undefined) {
+          // Old structure - keep as is
+          return item;
+        } else {
+          // New structure - extract address and balance from key-value
+          const address = Object.keys(item)[0];
+          const balance = item[address];
+          return { address, balance };
+        }
+      });
+
+      setBalances(processedBalances);
     } catch (err) {
       console.error("Error fetching balances after all retries:", err);
     } finally {
@@ -148,6 +187,7 @@ function App() {
             <section className="dashboard-section">
               <h2 className="section-header">
                 <span><IoFlash /></span> Latest UTXO
+                {blockHeight && <span className="block-height">({blockHeight})</span>}
               </h2>
               {loadingStates.utxos ? (
                 <LoadingSpinner />
