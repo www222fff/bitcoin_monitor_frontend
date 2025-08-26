@@ -79,10 +79,7 @@
 .block-height {
   font-size: 0.875rem;
   font-weight: 500;
-  color: #64748b;
-  background: rgba(100, 116, 139, 0.1);
-  padding: 4px 8px;
-  border-radius: 6px;
+  color: #334155;
   margin-left: 8px;
 }
 
