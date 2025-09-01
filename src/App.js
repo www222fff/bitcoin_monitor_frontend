@@ -22,6 +22,7 @@ function App() {
   const [hasError, setHasError] = useState(false);
 
   const API_BASE = process.env.REACT_APP_API_URL;
+  //const API_BASE = "https://53edba271760e4b58e08299442fca98930daa137-4000.dstack-prod8.phala.network";
 
   // Retry utility function
   const retryRequest = async (requestFn, maxRetries = 3, delayMs = 5000) => {
@@ -178,7 +179,7 @@ function App() {
       <h1 className="dashboard-title">
       <FaBitcoin /> Dashboard
       </h1>
-      {blockHeight && <div className="block-height" style={{marginTop: 8, fontWeight: 'bold'}}>[blockHeight={blockHeight}]</div>}
+          {blockHeight && <div className="block-height">[blockHeight={blockHeight}]</div>}
     </div>
 
         {hasError ? (
@@ -187,7 +188,7 @@ function App() {
           <div className="sections-container">
             <section className="dashboard-section">
               <h2 className="section-header">
-                <span><IoFlash /></span> Latest Top 10 UTXO Ranking 
+                <span><IoFlash /></span> Latest UTXO Ranking 
               </h2>
               {loadingStates.utxos ? (
                 <LoadingSpinner />
