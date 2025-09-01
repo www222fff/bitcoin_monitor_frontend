@@ -174,11 +174,12 @@ function App() {
   return (
     <div className="dashboard-container">
       <div className="dashboard-content">
-        <div className="dashboard-header">
-          <h1 className="dashboard-title">
-            <FaBitcoin /> Dashboard
-          </h1>
-        </div>
+    <div className="dashboard-header">
+      <h1 className="dashboard-title">
+      <FaBitcoin /> Dashboard
+      </h1>
+      {blockHeight && <div className="block-height" style={{marginTop: 8, fontWeight: 'bold'}}>[blockHeight={blockHeight}]</div>}
+    </div>
 
         {hasError ? (
           <ErrorMessage />
@@ -186,8 +187,7 @@ function App() {
           <div className="sections-container">
             <section className="dashboard-section">
               <h2 className="section-header">
-                <span><IoFlash /></span> Today UTXO Ranking
-                {blockHeight && <span className="block-height">[blockHeight={blockHeight}]</span>}
+                <span><IoFlash /></span> Latest Top 10 UTXO Ranking 
               </h2>
               {loadingStates.utxos ? (
                 <LoadingSpinner />
