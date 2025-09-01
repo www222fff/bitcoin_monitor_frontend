@@ -186,8 +186,8 @@ function App() {
           <div className="sections-container">
             <section className="dashboard-section">
               <h2 className="section-header">
-                <span><IoFlash /></span> Latest UTXO
-                {blockHeight && <span className="block-height">({blockHeight})</span>}
+                <span><IoFlash /></span> Today UTXO Ranking
+                {blockHeight && <span className="block-height">blockHeight={blockHeight}</span>}
               </h2>
               {loadingStates.utxos ? (
                 <LoadingSpinner />
@@ -200,7 +200,7 @@ function App() {
 
             <section className="dashboard-section">
               <h2 className="section-header">
-                <span><FaTrophy /></span> TOP Balances
+                <span><FaTrophy /></span> TOP 100 Balance Ranking
               </h2>
               {loadingStates.balances ? (
                 <LoadingSpinner />
@@ -228,7 +228,7 @@ function App() {
           <div className="contact-info">
             <div className="contact-links">
               <a
-                href="#"
+                href="https://x.com/BalanceBit0214"
                 className="contact-link twitter-link"
                 target="_blank"
                 rel="noopener noreferrer"
