@@ -177,7 +177,7 @@ function App() {
       <div className="dashboard-content">
     <div className="dashboard-header">
       <h1 className="dashboard-title">
-      <FaBitcoin /> Dashboard
+      <FaBitcoin /> Top Ranking
       </h1>
           {blockHeight && <div className="block-height">[blockHeight={blockHeight}]</div>}
     </div>
@@ -188,7 +188,7 @@ function App() {
           <div className="sections-container">
             <section className="dashboard-section">
               <h2 className="section-header">
-                <span><IoFlash /></span> Latest UTXO Ranking 
+                <span><IoFlash /></span> Latest UTXO Leaderboard 
               </h2>
               {loadingStates.utxos ? (
                 <LoadingSpinner />
@@ -201,7 +201,7 @@ function App() {
 
             <section className="dashboard-section">
               <h2 className="section-header">
-                <span><FaTrophy /></span> TOP 100 Balance Ranking
+                <span><FaTrophy /></span> TOP 100 Balance Leaderboard
               </h2>
               {loadingStates.balances ? (
                 <LoadingSpinner />
@@ -214,7 +214,7 @@ function App() {
 
             <section className="dashboard-section">
               <h2 className="section-header">
-                <span><FaChartBar /></span> Total Valid Address
+                <span><FaChartBar /></span> Total Active Address
               </h2>
               {loadingStates.total ? (
                 <LoadingSpinner />
