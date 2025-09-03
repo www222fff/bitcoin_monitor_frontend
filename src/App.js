@@ -146,8 +146,6 @@ function App() {
 
   useEffect(() => {
     fetchData();
-    const interval = setInterval(fetchData, 1800000);
-    return () => clearInterval(interval);
   }, []);
 
   const LoadingSpinner = () => (
@@ -205,7 +203,7 @@ function App() {
             {loadingStates.total ? (
               <LoadingSpinner />
             ) : totalError ? (
-              <p className="no-data">Total load failure</p>
+              <p className="no-data">Load failure, stay tuned</p>
             ) : (
               <TotalBalance total={totalBalance} />
             )}
@@ -216,7 +214,7 @@ function App() {
           <div className="contact-info">
             <div className="contact-links">
               <a
-                href="https://x.com/BalanceBit0214"
+                href="https://x.com/DannyImmutable"
                 className="contact-link twitter-link"
                 target="_blank"
                 rel="noopener noreferrer"
