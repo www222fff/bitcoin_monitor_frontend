@@ -3,11 +3,9 @@
 export async function onRequest(context) {
   console.log("[api-data] Function triggered");
   console.log("[api-data] Request URL:", context.request.url);
-  const KV = context.env.MY_KV; // 绑定的KV命名空间
-  //const API_BASE = "https://53edba271760e4b58e08299442fca98930daa137-4000.dstack-prod8.phala.network";
+  const KV = context.env.MY_KV;
   const API_BASE = context.env.REACT_APP_API_URL;
 
-  // 根据 type 设置不同的 TTL
   const { searchParams } = new URL(context.request.url);
   const type = searchParams.get("type") || "latest-utxo";
   let CACHE_TTL;
@@ -18,7 +16,6 @@ export async function onRequest(context) {
   }
   console.log(`[api-data] type: ${type}, CACHE_TTL: ${CACHE_TTL}`);
 
-  // 路由表
   const apiMap = {
     "latest-utxo": "/api/latest-utxo",
     "top-balances": "/api/top-balances",
