@@ -65,12 +65,16 @@ function App() {
       const response = await retryRequest(
         () => axios.get(`/api-data?type=latest-utxo`)
       );
-      const result = response.data.result || [];
-
+      const result = response.data.result;
+      if (!Array.isArray(result)) {
+        setHasError(true);
+        setUtxos([]);
+        setBlockHeight(null);
+        return;
+      }
       // Extract blockHeight from first item if present
       let processedUtxos = [];
       let extractedBlockHeight = null;
-
       if (result.length > 0) {
         const firstItem = result[0];
         if (firstItem.blockHeight !== undefined) {
@@ -86,10 +90,12 @@ function App() {
           processedUtxos = result;
         }
       }
-
       setUtxos(processedUtxos);
       setBlockHeight(extractedBlockHeight);
     } catch (err) {
+      setHasError(true);
+      setUtxos([]);
+      setBlockHeight(null);
       console.error("Error fetching UTXOs after all retries:", err);
     } finally {
       setLoadingStates(prev => ({ ...prev, utxos: false }));
@@ -101,8 +107,12 @@ function App() {
       const response = await retryRequest(
         () => axios.get(`/api-data?type=top-balances`)
       );
-      const result = response.data.result || [];
-
+      const result = response.data.result;
+      if (!Array.isArray(result)) {
+        setHasError(true);
+        setBalances([]);
+        return;
+      }
       // Process new structure: convert object key-value pairs to array
       const processedBalances = result.map(item => {
         if (item.address && item.balance !== undefined) {
@@ -115,9 +125,10 @@ function App() {
           return { address, balance };
         }
       });
-
       setBalances(processedBalances);
     } catch (err) {
+      setHasError(true);
+      setBalances([]);
       console.error("Error fetching balances after all retries:", err);
     } finally {
       setLoadingStates(prev => ({ ...prev, balances: false }));
@@ -129,8 +140,16 @@ function App() {
       const response = await retryRequest(
         () => axios.get(`/api-data?type=total-balances`)
       );
-      setTotalBalance(response.data.result || "0");
+      const result = response.data.result;
+      if (typeof result !== "number" && typeof result !== "string") {
+        setHasError(true);
+        setTotalBalance(0);
+        return;
+      }
+      setTotalBalance(result || "0");
     } catch (err) {
+      setHasError(true);
+      setTotalBalance(0);
       console.error("Error fetching total balance after all retries:", err);
     } finally {
       setLoadingStates(prev => ({ ...prev, total: false }));
