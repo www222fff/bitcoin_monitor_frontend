@@ -21,9 +21,6 @@ function App() {
   });
   const [hasError, setHasError] = useState(false);
 
-  const API_BASE = process.env.REACT_APP_API_URL;
-  //const API_BASE = "https://53edba271760e4b58e08299442fca98930daa137-4000.dstack-prod8.phala.network";
-
   // Retry utility function
   const retryRequest = async (requestFn, maxRetries = 3, delayMs = 5000) => {
     let lastError;
@@ -53,17 +50,6 @@ function App() {
     });
     setHasError(false);
 
-    if (!API_BASE) {
-      console.error("REACT_APP_API_URL environment variable is not set");
-      setHasError(true);
-      setLoadingStates({
-        utxos: false,
-        balances: false,
-        total: false
-      });
-      return;
-    }
-
     // Fetch UTXO data
     fetchUtxos();
 
@@ -77,7 +63,7 @@ function App() {
   const fetchUtxos = async () => {
     try {
       const response = await retryRequest(
-        () => axios.get(`${API_BASE}/api/latest-utxo`)
+        () => axios.get(`/api/data?type=latest-utxo`)
       );
       const result = response.data.result || [];
 
@@ -113,7 +99,7 @@ function App() {
   const fetchBalances = async () => {
     try {
       const response = await retryRequest(
-        () => axios.get(`${API_BASE}/api/top-balances`)
+        () => axios.get(`/api/data?type=top-balances`)
       );
       const result = response.data.result || [];
 
@@ -141,7 +127,7 @@ function App() {
   const fetchTotalBalance = async () => {
     try {
       const response = await retryRequest(
-        () => axios.get(`${API_BASE}/api/total-balances`)
+        () => axios.get(`/api/data?type=total-balances`)
       );
       setTotalBalance(response.data.result || "0");
     } catch (err) {
@@ -166,9 +152,8 @@ function App() {
 
   const ErrorMessage = () => (
     <div className="error-message">
-      <h3>⚠️ Configuration Error</h3>
-      <p>API URL is not configured. Please set the REACT_APP_API_URL environment variable.</p>
-      <p>Current API_BASE: {API_BASE || 'undefined'}</p>
+      <h3>⚠️ Error</h3>
+      <p>API 请求失败，请稍后重试。</p>
     </div>
   );
 
