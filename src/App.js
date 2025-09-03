@@ -173,7 +173,7 @@ function App() {
           <div className="sections-container">
             <section className="dashboard-section">
               <h2 className="section-header">
-                <span><IoFlash /></span> Latest UTXO Leaderboard 
+                <span><IoFlash /></span> Latest UTXO 
               </h2>
               {loadingStates.utxos ? (
                 <LoadingSpinner />
@@ -186,7 +186,7 @@ function App() {
 
             <section className="dashboard-section">
               <h2 className="section-header">
-                <span><FaTrophy /></span> TOP 100 Balance Leaderboard
+                <span><FaTrophy /></span> TOP 100 Balance 
               </h2>
               {loadingStates.balances ? (
                 <LoadingSpinner />

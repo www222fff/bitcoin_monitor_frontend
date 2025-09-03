@@ -76,6 +76,14 @@
   gap: 8px;
 }
 
+@media (max-width: 768px) {
+  .section-header {
+    font-size: 1.1rem;
+    gap: 4px;
+    margin-bottom: 16px;
+  }
+}
+
 .block-height {
   font-size: 0.875rem;
   color: #64748b;
