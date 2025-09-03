@@ -4,7 +4,8 @@ export async function onRequest(context) {
   console.log("[api-data] Function triggered");
   console.log("[api-data] Request URL:", context.request.url);
   const KV = context.env.MY_KV; // 绑定的KV命名空间
-  const API_BASE = "https://53edba271760e4b58e08299442fca98930daa137-4000.dstack-prod8.phala.network";
+  //const API_BASE = "https://53edba271760e4b58e08299442fca98930daa137-4000.dstack-prod8.phala.network";
+  const API_BASE = process.env.REACT_APP_API_URL;
   // 根据 type 设置不同的 TTL
   const { searchParams } = new URL(context.request.url);
   const type = searchParams.get("type") || "latest-utxo";

@@ -63,7 +63,7 @@ function App() {
   const fetchUtxos = async () => {
     try {
       const response = await retryRequest(
-        () => axios.get(`/api/data?type=latest-utxo`)
+        () => axios.get(`/api-data?type=latest-utxo`)
       );
       const result = response.data.result || [];
 
@@ -99,7 +99,7 @@ function App() {
   const fetchBalances = async () => {
     try {
       const response = await retryRequest(
-        () => axios.get(`/api/data?type=top-balances`)
+        () => axios.get(`/api-data?type=top-balances`)
       );
       const result = response.data.result || [];
 
@@ -127,7 +127,7 @@ function App() {
   const fetchTotalBalance = async () => {
     try {
       const response = await retryRequest(
-        () => axios.get(`/api/data?type=total-balances`)
+        () => axios.get(`/api-data?type=total-balances`)
       );
       setTotalBalance(response.data.result || "0");
     } catch (err) {
