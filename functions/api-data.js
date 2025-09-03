@@ -8,13 +8,7 @@ export async function onRequest(context) {
 
   const { searchParams } = new URL(context.request.url);
   const type = searchParams.get("type") || "latest-utxo";
-  let CACHE_TTL;
-  if (type === "latest-utxo") {
-    CACHE_TTL = 15 * 60; // 15分钟
-  } else {
-    CACHE_TTL = 60 * 60; // 1小时
-  }
-  console.log(`[api-data] type: ${type}, CACHE_TTL: ${CACHE_TTL}`);
+  let CACHE_TTL = 60 * 60 + 10;
 
   const apiMap = {
     "latest-utxo": "/api/latest-utxo",
@@ -33,14 +27,9 @@ export async function onRequest(context) {
   let cached = await KV.get(CACHE_KEY, { type: "json" });
   if (cached) {
     console.log(`[api-data] Cache found for key: ${CACHE_KEY}`);
-    if (Date.now() - cached.timestamp < CACHE_TTL * 1000) {
-      console.log("[api-data] Returning cached data");
-      return new Response(JSON.stringify({ result: cached.data }), {
-        headers: { "Content-Type": "application/json" }
-      });
-    } else {
-      console.log("[api-data] Cache expired, will fetch new data");
-    }
+    return new Response(JSON.stringify({ result: cached.data }), {
+      headers: { "Content-Type": "application/json" }
+    });
   } else {
     console.log(`[api-data] No cache found for key: ${CACHE_KEY}`);
   }
