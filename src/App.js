@@ -175,7 +175,7 @@ function App() {
             {loadingStates.utxos ? (
               <LoadingSpinner />
             ) : utxosError ? (
-              <p className="no-data">UTXO 数据加载失败</p>
+              <p className="no-data">UTXO load failure</p>
             ) : utxos.length > 0 ? (
               <LatestUtxo utxos={utxos} />
             ) : (
@@ -190,7 +190,7 @@ function App() {
             {loadingStates.balances ? (
               <LoadingSpinner />
             ) : balancesError ? (
-              <p className="no-data">Balance 数据加载失败</p>
+              <p className="no-data">Balance load failure</p>
             ) : balances.length > 0 ? (
               <AddressBalances balances={balances} />
             ) : (
@@ -205,7 +205,7 @@ function App() {
             {loadingStates.total ? (
               <LoadingSpinner />
             ) : totalError ? (
-              <p className="no-data">Total 数据加载失败</p>
+              <p className="no-data">Total load failure</p>
             ) : (
               <TotalBalance total={totalBalance} />
             )}
