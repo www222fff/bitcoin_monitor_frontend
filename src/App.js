@@ -19,7 +19,9 @@ function App() {
     balances: true,
     total: true
   });
-  const [hasError, setHasError] = useState(false);
+  const [utxosError, setUtxosError] = useState(false);
+  const [balancesError, setBalancesError] = useState(false);
+  const [totalError, setTotalError] = useState(false);
 
   // Retry utility function
   const retryRequest = async (requestFn, maxRetries = 3, delayMs = 5000) => {
@@ -43,20 +45,12 @@ function App() {
   };
 
   const fetchData = async () => {
-    setLoadingStates({
-      utxos: true,
-      balances: true,
-      total: true
-    });
-    setHasError(false);
-
-    // Fetch UTXO data
+    setLoadingStates({ utxos: true, balances: true, total: true });
+    setUtxosError(false);
+    setBalancesError(false);
+    setTotalError(false);
     fetchUtxos();
-
-    // Fetch balance data
     fetchBalances();
-
-    // Fetch total balance data
     fetchTotalBalance();
   };
 
@@ -67,33 +61,30 @@ function App() {
       );
       const result = response.data.result;
       if (!Array.isArray(result)) {
-        setHasError(true);
+        setUtxosError(true);
         setUtxos([]);
         setBlockHeight(null);
         return;
       }
-      // Extract blockHeight from first item if present
       let processedUtxos = [];
       let extractedBlockHeight = null;
       if (result.length > 0) {
         const firstItem = result[0];
         if (firstItem.blockHeight !== undefined) {
           extractedBlockHeight = firstItem.blockHeight;
-          // Process remaining items as address-value pairs
           processedUtxos = result.slice(1).map(item => {
             const address = Object.keys(item)[0];
             const utxo = item[address];
             return { address, utxo };
           });
         } else {
-          // Fallback to old structure if no blockHeight
           processedUtxos = result;
         }
       }
       setUtxos(processedUtxos);
       setBlockHeight(extractedBlockHeight);
     } catch (err) {
-      setHasError(true);
+      setUtxosError(true);
       setUtxos([]);
       setBlockHeight(null);
       console.error("Error fetching UTXOs after all retries:", err);
@@ -109,17 +100,14 @@ function App() {
       );
       const result = response.data.result;
       if (!Array.isArray(result)) {
-        setHasError(true);
+        setBalancesError(true);
         setBalances([]);
         return;
       }
-      // Process new structure: convert object key-value pairs to array
       const processedBalances = result.map(item => {
         if (item.address && item.balance !== undefined) {
-          // Old structure - keep as is
           return item;
         } else {
-          // New structure - extract address and balance from key-value
           const address = Object.keys(item)[0];
           const balance = item[address];
           return { address, balance };
@@ -127,7 +115,7 @@ function App() {
       });
       setBalances(processedBalances);
     } catch (err) {
-      setHasError(true);
+      setBalancesError(true);
       setBalances([]);
       console.error("Error fetching balances after all retries:", err);
     } finally {
@@ -142,13 +130,13 @@ function App() {
       );
       const result = response.data.result;
       if (typeof result !== "number" && typeof result !== "string") {
-        setHasError(true);
+        setTotalError(true);
         setTotalBalance(0);
         return;
       }
       setTotalBalance(result || "0");
     } catch (err) {
-      setHasError(true);
+      setTotalError(true);
       setTotalBalance(0);
       console.error("Error fetching total balance after all retries:", err);
     } finally {
@@ -169,13 +157,6 @@ function App() {
     </div>
   );
 
-  const ErrorMessage = () => (
-    <div className="error-message">
-      <h3>⚠️ Error</h3>
-      <p>API 请求失败，请稍后重试。</p>
-    </div>
-  );
-
   return (
     <div className="dashboard-container">
       <div className="dashboard-content">
@@ -186,48 +167,50 @@ function App() {
           {blockHeight && <div className="block-height">[blockHeight={blockHeight}]</div>}
     </div>
 
-        {hasError ? (
-          <ErrorMessage />
-        ) : (
-          <div className="sections-container">
-            <section className="dashboard-section">
-              <h2 className="section-header">
-                <span><IoFlash /></span> Latest UTXO 
-              </h2>
-              {loadingStates.utxos ? (
-                <LoadingSpinner />
-              ) : utxos.length > 0 ? (
-                <LatestUtxo utxos={utxos} />
-              ) : (
-                <p className="no-data">No UTXOs found</p>
-              )}
-            </section>
+        <div className="sections-container">
+          <section className="dashboard-section">
+            <h2 className="section-header">
+              <span><IoFlash /></span> Latest UTXO 
+            </h2>
+            {loadingStates.utxos ? (
+              <LoadingSpinner />
+            ) : utxosError ? (
+              <p className="no-data">UTXO 数据加载失败</p>
+            ) : utxos.length > 0 ? (
+              <LatestUtxo utxos={utxos} />
+            ) : (
+              <p className="no-data">No UTXOs found</p>
+            )}
+          </section>
 
-            <section className="dashboard-section">
-              <h2 className="section-header">
-                <span><FaTrophy /></span> TOP 100 Balance 
-              </h2>
-              {loadingStates.balances ? (
-                <LoadingSpinner />
-              ) : balances.length > 0 ? (
-                <AddressBalances balances={balances} />
-              ) : (
-                <p className="no-data">No balances found</p>
-              )}
-            </section>
+          <section className="dashboard-section">
+            <h2 className="section-header">
+              <span><FaTrophy /></span> TOP 100 Balance 
+            </h2>
+            {loadingStates.balances ? (
+              <LoadingSpinner />
+            ) : balancesError ? (
+              <p className="no-data">Balance 数据加载失败</p>
+            ) : balances.length > 0 ? (
+              <AddressBalances balances={balances} />
+            ) : (
+              <p className="no-data">No balances found</p>
+            )}
+          </section>
 
-            <section className="dashboard-section">
-              <h2 className="section-header">
-                <span><FaChartBar /></span> Total Active Address
-              </h2>
-              {loadingStates.total ? (
-                <LoadingSpinner />
-              ) : (
-                <TotalBalance total={totalBalance} />
-              )}
-            </section>
-          </div>
-        )}
+          <section className="dashboard-section">
+            <h2 className="section-header">
+              <span><FaChartBar /></span> Total Active Address
+            </h2>
+            {loadingStates.total ? (
+              <LoadingSpinner />
+            ) : totalError ? (
+              <p className="no-data">Total 数据加载失败</p>
+            ) : (
+              <TotalBalance total={totalBalance} />
+            )}
+          </section>
+        </div>
 
         <footer className="dashboard-footer">
           <div className="contact-info">
