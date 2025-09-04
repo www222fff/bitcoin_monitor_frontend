@@ -166,20 +166,6 @@ function App() {
     </div>
 
         <div className="sections-container">
-          <section className="dashboard-section">
-            <h2 className="section-header">
-              <span><IoFlash /></span> Latest UTXO 
-            </h2>
-            {loadingStates.utxos ? (
-              <LoadingSpinner />
-            ) : utxosError ? (
-              <p className="no-data">UTXO load failure</p>
-            ) : utxos.length > 0 ? (
-              <LatestUtxo utxos={utxos} />
-            ) : (
-              <p className="no-data">No UTXOs found</p>
-            )}
-          </section>
 
           <section className="dashboard-section">
             <h2 className="section-header">
@@ -193,6 +179,21 @@ function App() {
               <AddressBalances balances={balances} />
             ) : (
               <p className="no-data">No balances found</p>
+            )}
+          </section>
+
+          <section className="dashboard-section">
+            <h2 className="section-header">
+              <span><IoFlash /></span> Latest UTXO 1 Day
+            </h2>
+            {loadingStates.utxos ? (
+              <LoadingSpinner />
+            ) : utxosError ? (
+              <p className="no-data">UTXO load failure</p>
+            ) : utxos.length > 0 ? (
+              <LatestUtxo utxos={utxos} />
+            ) : (
+              <p className="no-data">No UTXOs found</p>
             )}
           </section>
 
