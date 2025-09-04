@@ -203,7 +203,7 @@ function App() {
             {loadingStates.total ? (
               <LoadingSpinner />
             ) : totalError ? (
-              <p className="no-data">Load failure, stay tuned</p>
+              <p className="no-data">Temp busy stay tuned</p>
             ) : (
               <TotalBalance total={totalBalance} />
             )}
