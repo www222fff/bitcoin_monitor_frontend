@@ -197,18 +197,6 @@ function App() {
             )}
           </section>
 
-          <section className="dashboard-section">
-            <h2 className="section-header">
-              <span><FaChartBar /></span> Total Active Address
-            </h2>
-            {loadingStates.total ? (
-              <LoadingSpinner />
-            ) : totalError ? (
-              <p className="no-data">Temp busy stay tuned</p>
-            ) : (
-              <TotalBalance total={totalBalance} />
-            )}
-          </section>
         </div>
 
         <footer className="dashboard-footer">
