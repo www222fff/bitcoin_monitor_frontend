@@ -19,7 +19,7 @@ export default function AddressBalances({ balances }) {
           {balances.map((b, idx) => (
             <tr key={idx} className="table-row orange">
               <td className="table-cell mono">{extractAddress(b.address)}</td>
-              <td className="table-cell highlight orange">{b.balance}</td>
+              <td className="table-cell highlight orange">{b.balance.toFixed(2)}</td>
             </tr>
           ))}
         </tbody>
