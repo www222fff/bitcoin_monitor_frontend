@@ -174,7 +174,7 @@ function App() {
             {loadingStates.balances ? (
               <LoadingSpinner />
             ) : balancesError ? (
-              <p className="no-data">Balance load failure</p>
+              <p className="no-data">Temp busy stay tuned</p>
             ) : balances.length > 0 ? (
               <AddressBalances balances={balances} />
             ) : (
@@ -189,7 +189,7 @@ function App() {
             {loadingStates.utxos ? (
               <LoadingSpinner />
             ) : utxosError ? (
-              <p className="no-data">UTXO load failure</p>
+              <p className="no-data">Temp busy stay tuned</p>
             ) : utxos.length > 0 ? (
               <LatestUtxo utxos={utxos} />
             ) : (
