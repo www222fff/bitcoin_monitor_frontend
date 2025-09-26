@@ -169,22 +169,7 @@ function App() {
 
           <section className="dashboard-section">
             <h2 className="section-header">
-              <span><FaTrophy /></span> TOP 100 Balance 
-            </h2>
-            {loadingStates.balances ? (
-              <LoadingSpinner />
-            ) : balancesError ? (
-              <p className="no-data">Temp busy stay tuned</p>
-            ) : balances.length > 0 ? (
-              <AddressBalances balances={balances} />
-            ) : (
-              <p className="no-data">No balances found</p>
-            )}
-          </section>
-
-          <section className="dashboard-section">
-            <h2 className="section-header">
-              <span><IoFlash /></span> Latest UTXO 1 Day
+              <span><IoFlash /></span> Most Active Addresses Today
             </h2>
             {loadingStates.utxos ? (
               <LoadingSpinner />
@@ -194,6 +179,21 @@ function App() {
               <LatestUtxo utxos={utxos} />
             ) : (
               <p className="no-data">No UTXOs found</p>
+            )}
+          </section>
+
+          <section className="dashboard-section">
+            <h2 className="section-header">
+              <span><FaTrophy /></span> TOP 100 Ranking
+            </h2>
+            {loadingStates.balances ? (
+              <LoadingSpinner />
+            ) : balancesError ? (
+              <p className="no-data">Temp busy stay tuned</p>
+            ) : balances.length > 0 ? (
+              <AddressBalances balances={balances} />
+            ) : (
+              <p className="no-data">No balances found</p>
             )}
           </section>
 
